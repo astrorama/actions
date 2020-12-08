@@ -16,4 +16,4 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run: ./.github/actions/elements-build-rpm/build-rpm.sh "${{ inputs.build-dir }}"
+      run: ${{ github.action_path }}/build-rpm.sh "${{ inputs.build-dir }}"

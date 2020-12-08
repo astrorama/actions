@@ -11,6 +11,6 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run: ./.github/actions/setup-dependencies/setup-repositories.sh
+      run: ${{ github.action_path }}/setup-repositories.sh
     - shell: bash
-      run: ./.github/actions/setup-dependencies/install-dependencies.sh "${{ inputs.dependency-list }}" "${{ inputs.python-dependency-list }}"
+      run: ${{ github.action_path }}/install-dependencies.sh "${{ inputs.dependency-list }}" "${{ inputs.python-dependency-list }}"
