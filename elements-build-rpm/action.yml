@@ -1,0 +1,19 @@
+name: 'Build an RPM from an Elements project'
+description: 'Build an RPM from an Elements project'
+inputs:
+  build-dir:
+    description: 'Build directory'
+    required: false
+    default: build
+outputs:
+  rpm-dir:
+    description: 'Directory where rpms are'
+    value: ${{ inputs.build-dir }}/Packages/RPM/RPMS/x86_64/
+  srpm-dir:
+    description: 'Directory where source rpms are'
+    value: ${{ inputs.build-dir }}/Packages/RPM/SRPMS/
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: ./.github/actions/elements-build-rpm/build-rpm.sh "${{ inputs.build-dir }}"
