@@ -21,8 +21,5 @@ yum install -y ${rpm_dev_deps} ${rpm_doc_deps}
 # Common dependencies
 yum install -y cmake make gcc-c++ rpm-build
 
-# Install explicit dependency list
-xargs -a "$1" yum install -y
-
-# Install python dependencies with the proper prefix
-sed -e "s/python/$PYTHON/" "$2" | xargs yum install -y
+# Install dependency list
+sed -e "s/\$PYTHON/$PYTHON/" "$1" | xargs yum install -y
