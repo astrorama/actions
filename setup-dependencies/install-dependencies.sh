@@ -25,4 +25,4 @@ yum install -y cmake make gcc-c++ rpm-build
 xargs -a "$1" yum install -y
 
 # Install python dependencies with the proper prefix
-sed -e "s/^/$PYTHON-/" "$2" | xargs yum install -y
+sed -e "s/python/$PYTHON/" "$2" | xargs yum install -y
