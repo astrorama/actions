@@ -18,12 +18,12 @@ Example:
 ```yaml
     steps:
         ...
-        - id: package-version
+        - id: project-version
           uses: astrorama/actions/elements-project@master
         ...
         - run: |
-            echo ${{ steps.package-version.outputs.package }}
-            echo ${{ steps.package-version.outputs.version }}
+            echo ${{ steps.project-version.outputs.project }}
+            echo ${{ steps.project-version.outputs.version }}
 ```
 
 ## setup-dependencies
