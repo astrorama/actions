@@ -15,22 +15,20 @@ fi
 
 # Astrorama repository
 cat >/etc/yum.repos.d/astrorama.repo <<EOF
-[bintray--astrorama-fedora]
-name=bintray--astrorama-fedora
-baseurl=https://dl.bintray.com/astrorama/travis/master/${ID}/\$releasever/\$basearch
-gpgcheck=0
-repo_gpgcheck=0
+[Artifactory-Astrorama]
+name=Artifactory-Astrorama
+baseurl=https://astrorama.jfrog.io/artifactory/fedora/master/${ID}/\$releasever/\$basearch
 enabled=1
+gpgcheck=0
 EOF
 
 # Develop repository if not building for master
 if [ "${GITHUB_REF#refs/heads/}" != "master" ]; then
   cat >>/etc/yum.repos.d/astrorama.repo <<EOF
-[bintray--astrorama-fedora-develop]
-name=bintray--astrorama-fedora-develop
-baseurl=https://dl.bintray.com/astrorama/travis/develop/${ID}/\$releasever/\$basearch
-gpgcheck=0
-repo_gpgcheck=0
+[Artifactory-Astrorama-Develop]
+name=Artifactory-Astrorama-Develop
+baseurl=https://astrorama.jfrog.io/artifactory/fedora/develop/${ID}/\$releasever/\$basearch
 enabled=1
+gpgcheck=0
 EOF
 fi
