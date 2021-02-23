@@ -28,7 +28,7 @@ if [ "${GITHUB_REF#refs/heads/}" != "master" ]; then
 [Artifactory-Astrorama-Develop]
 name=Artifactory-Astrorama-Develop
 baseurl=https://astrorama.jfrog.io/artifactory/fedora/develop/${ID}/\$releasever/\$basearch
-enabled=0
+enabled=1
 gpgcheck=0
 EOF
 fi
