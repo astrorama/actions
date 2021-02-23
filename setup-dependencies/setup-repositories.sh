@@ -17,7 +17,7 @@ fi
 cat >/etc/yum.repos.d/astrorama.repo <<EOF
 [Artifactory-Astrorama]
 name=Artifactory-Astrorama
-baseurl=https://astrorama.jfrog.io/artifactory/fedora/master/${ID}/\$releasever/\$basearch
+baseurl=https://astrorama.jfrog.io/artifactory/rpm/stable/${ID}/\$releasever/\$basearch
 enabled=1
 gpgcheck=0
 EOF
@@ -27,7 +27,7 @@ if [ "${GITHUB_REF#refs/heads/}" != "master" ]; then
   cat >>/etc/yum.repos.d/astrorama.repo <<EOF
 [Artifactory-Astrorama-Develop]
 name=Artifactory-Astrorama-Develop
-baseurl=https://astrorama.jfrog.io/artifactory/fedora/develop/${ID}/\$releasever/\$basearch
+baseurl=https://astrorama.jfrog.io/artifactory/rpm/develop/${ID}/\$releasever/\$basearch
 enabled=1
 gpgcheck=0
 EOF
