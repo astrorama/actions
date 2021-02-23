@@ -40,18 +40,18 @@ Activate and install the dependencies for an Elements project.
 
 Example dependency list:
 ```
-boost-devel  
-log4cpp-devel  
-doxygen  
-CCfits-devel  
+boost-devel
+log4cpp-devel
+doxygen
+CCfits-devel
 graphviz
 ```
 
 Example python dependency list:
 
 ```
-numpy  
-pytest  
+numpy
+pytest
 sphinx
 ```
 
@@ -63,10 +63,10 @@ Example of usage:
 ```yaml
   steps:
     ...
-    - name: Install dependencies  
+    - name: Install dependencies
       uses: astrorama/actions/setup-dependencies@master
-      with:  
-        dependency-list: .github/workflows/dependencies.txt  
+      with:
+        dependency-list: .github/workflows/dependencies.txt
         python-dependency-list: .github/workflows/dependencies-python.txt
 ```
 
@@ -85,13 +85,13 @@ Example:
 ```yaml
   steps:
     ...
-    - name: Build  
-      id: build  
-      uses: astroama/actions/elements-build-rpm@master
+    - name: Build
+      id: build
+      uses: astrorama/actions/elements-build-rpm@master
     ...
     - uses: actions/upload-artifact@v2
-      with:  
+      with:
         name: "my-artifact"
-        path: ${{ steps.build.outputs.rpm-dir }}/*.rpm  
+        path: ${{ steps.build.outputs.rpm-dir }}/*.rpm
         retention-days: 15
 ```
