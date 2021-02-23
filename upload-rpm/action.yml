@@ -1,0 +1,25 @@
+name: 'Upload RPMs to Artifactory'
+description: 'Upload RPMs to Artifactory'
+inputs:
+  os_type:
+    description: 'OS type'
+    required: true
+  os_version:
+    description: 'OS version'
+    required: true
+  os_arch:
+    description: 'Architecture'
+    required: false
+    default: x86_64
+  path:
+    description: 'Location of the RPMs'
+    required: true
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      env:
+        OS_TYPE: ${{ inputs.os_type }}
+        OS_VERSION: ${{ inputs.os_version }}
+        OS_ARCH: ${{ inputs.os_arch }}
+      run:  /__w/_actions/astrorama/actions/master/upload-rpm/upload-rpm.sh "${{ inputs.path }}"
