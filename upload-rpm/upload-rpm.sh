@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 BRANCH="${GITHUB_REF#refs/heads/}"
 if [ "$BRANCH" == "master" ]; then
