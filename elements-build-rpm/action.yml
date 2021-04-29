@@ -5,6 +5,10 @@ inputs:
     description: 'Build directory'
     required: false
     default: build
+  release:
+    description: 'Release number'
+    required: false
+    default:
 outputs:
   rpm-dir:
     description: 'Directory where rpms are'
@@ -16,4 +20,4 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run:  /__w/_actions/astrorama/actions/master/elements-build-rpm/build-rpm.sh "${{ inputs.build-dir }}"
+      run:  /__w/_actions/astrorama/actions/master/elements-build-rpm/build-rpm.sh "${{ inputs.build-dir }}" "${{ inputs.release }}"

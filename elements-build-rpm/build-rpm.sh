@@ -1,6 +1,9 @@
 #!/bin/bash
 set -ex
 
+BUILD_DIR="$1"
+RELEASE="$2"
+
 # Environment
 export VERBOSE=1
 export CTEST_OUTPUT_ON_FAILURE=1
@@ -11,7 +14,7 @@ source /etc/os-release
 
 # Common flags
 CMAKEFLAGS="-DINSTALL_DOC=ON -DUSE_SPHINX_APIDOC=OFF -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_TESTS=OFF -DRPM_NO_CHECK=OFF"
-if [ "${BRANCH}" != "master" ]; then
+if [[ "${BRANCH}" != "master" && -z "${RELEASE}" ]]; then
   CMAKEFLAGS="${CMAKEFLAGS} -DCPACK_PACKAGE_RELEASE=dev"
 fi
 
@@ -19,9 +22,13 @@ if [[ ("$ID" == "fedora" && "$VERSION_ID" -ge 30) || ("$ID" == "centos" && "$VER
   CMAKEFLAGS="${CMAKEFLAGS} -DPYTHON_EXPLICIT_VERSION=3"
 fi
 
+if [[ ! -z "${RELEASE}" ]]; then
+  CMAKEFLAGSS="${CMAKEFLAGS} -DCPACK_PACKAGE_RELEASE=${RELEASE}"
+fi
+
 # Build
 SRCDIR="$(pwd)"
-mkdir -p "$1"
-cd "$1"
+mkdir -p "${BUILD_DIR}"
+cd "${BUILD_DIR}"
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_TESTS=OFF -DRPM_NO_CHECK=OFF $CMAKEFLAGS "${SRCDIR}"
 make rpm
