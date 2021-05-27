@@ -20,4 +20,4 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run:  /__w/_actions/astrorama/actions/master/elements-build-rpm/build-rpm.sh "${{ inputs.build-dir }}" "${{ inputs.release }}"
+      run:  ${GITHUB_ACTION_PATH}/build-rpm.sh "${{ inputs.build-dir }}" "${{ inputs.release }}"

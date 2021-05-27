@@ -8,4 +8,4 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run:  /__w/_actions/astrorama/actions/master/upload-rpm/upload-rpm.sh "${{ inputs.path }}"
+      run:  ${GITHUB_ACTION_PATH}/upload-rpm.sh "${{ inputs.path }}"
