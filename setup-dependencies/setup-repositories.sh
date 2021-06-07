@@ -13,6 +13,9 @@ if [ "$ID" == "centos" ]; then
   fi
 fi
 
+# Update image
+yum update -y
+
 # Astrorama repository
 cat >/etc/yum.repos.d/astrorama.repo <<EOF
 [Artifactory-Astrorama]
