@@ -30,7 +30,7 @@ if [ "${GITHUB_REF#refs/heads/}" != "master" ]; then
   cat >>/etc/yum.repos.d/astrorama.repo <<EOF
 [AstroUnigeEuclidDevel]
 name=astro.unige.ch Euclid Devel
-baseurl=http://repository.astro.unige.ch/euclid/develop/${ID}/\$releasever/\$basearch
+baseurl=http://repository.astro.unige.ch/euclid/devel/develop/${ID}/\$releasever/\$basearch
 enabled=1
 gpgcheck=0
 EOF

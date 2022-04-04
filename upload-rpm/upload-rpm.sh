@@ -18,6 +18,8 @@ fi
 
 # Helper to copy the artifacts and update the repo
 copy_artifacts() {
+  sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" \
+    "mkdir -p /srv/repository/www/html/euclid/${1}"
   sshpass -e scp -F "${SCRIPT_DIR}/ssh_config" "${@:2}" \
     "${REPOSITORY_USER}@repo01.astro.unige.ch:/srv/repository/www/html/euclid/${1}"
   sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" \
@@ -33,11 +35,18 @@ cat > "${SCRIPT_DIR}/key" <<EOF
 ${REPOSITORY_KEY}
 EOF
 
-BRANCH="${GITHUB_REF#refs/heads/}"
-if [ "$BRANCH" == "master" ]; then
-  REPO="stable"
+
+if [ -n "${GITHUB_HEAD_REF}" ]; then
+  REPO="${GITHUB_HEAD_REF#refs/heads/}"
+elif [ -n "${GITHUB_REF_TYPE}" == "tag" ]; then
+  REPO=""
 else
-  REPO="$BRANCH"
+  BRANCH="${GITHUB_REF#refs/heads/}"
+  if [ "$BRANCH" == "master" ]; then
+    REPO="stable"
+  else
+    REPO="${BRANCH}"
+  fi
 fi
 
 # RPM
