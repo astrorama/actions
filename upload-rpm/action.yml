@@ -1,8 +1,11 @@
 name: 'Upload RPMs to the repository'
 description: 'Upload RPMs to the repository'
 inputs:
-  path:
+  rpm-dir:
     description: 'Location of the RPMs'
+    required: true
+  srpm-dir:
+    description: 'Location of the source RPMs'
     required: true
 runs:
   using: composite
