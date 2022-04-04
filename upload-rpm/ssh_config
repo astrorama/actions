@@ -1,0 +1,6 @@
+UserKnownHostsFile ${SCRIPT_DIR}/known_hosts
+IdentityFile ${SCRIPT_DIR}/key
+
+Host repo01.astro.unige.ch
+    Hostname repo01.astro.unige.ch
+    ProxyJump ${REPOSITORY_USER}@login01.astro.unige.ch
