@@ -19,6 +19,7 @@ fi
 # Helper to copy the artifacts and update the repo
 copy_artifacts() {
   sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" \
+    "${REPOSITORY_USER}@repo01.astro.unige.ch" \
     "mkdir -p /srv/repository/www/html/euclid/${1}"
   sshpass -e scp -F "${SCRIPT_DIR}/ssh_config" "${@:2}" \
     "${REPOSITORY_USER}@repo01.astro.unige.ch:/srv/repository/www/html/euclid/${1}"
