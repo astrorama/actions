@@ -18,9 +18,9 @@ yum update -y
 
 # Astrorama repository
 cat >/etc/yum.repos.d/astrorama.repo <<EOF
-[Artifactory-Astrorama]
-name=Artifactory-Astrorama
-baseurl=https://astrorama.jfrog.io/artifactory/rpm/stable/${ID}/\$releasever/\$basearch
+[AstroUnigeEuclidStable]
+name=astro.unige.ch Euclid Stable
+baseurl=http://repository.astro.unige.ch/euclid/${ID}/\$releasever/\$basearch
 enabled=1
 gpgcheck=0
 EOF
@@ -28,9 +28,9 @@ EOF
 # Develop repository if not building for master
 if [ "${GITHUB_REF#refs/heads/}" != "master" ]; then
   cat >>/etc/yum.repos.d/astrorama.repo <<EOF
-[Artifactory-Astrorama-Develop]
-name=Artifactory-Astrorama-Develop
-baseurl=https://astrorama.jfrog.io/artifactory/rpm/develop/${ID}/\$releasever/\$basearch
+[AstroUnigeEuclidDevel]
+name=astro.unige.ch Euclid Devel
+baseurl=http://repository.astro.unige.ch/euclid/devel/${ID}/\$releasever/\$basearch
 enabled=1
 gpgcheck=0
 EOF

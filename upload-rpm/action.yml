@@ -1,5 +1,5 @@
-name: 'Upload RPMs to Artifactory'
-description: 'Upload RPMs to Artifactory'
+name: 'Upload RPMs to the repository'
+description: 'Upload RPMs to the repository'
 inputs:
   path:
     description: 'Location of the RPMs'
@@ -8,4 +8,4 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run:  ${GITHUB_ACTION_PATH}/upload-rpm.sh "${{ inputs.path }}"
+      run:  ${GITHUB_ACTION_PATH}/upload-rpm.sh "${{ inputs.rpm-dir }}" "${{ inputs.srpm-dir }}"
