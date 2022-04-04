@@ -44,9 +44,9 @@ elif [ -n "${GITHUB_REF_TYPE}" == "tag" ]; then
 else
   BRANCH="${GITHUB_REF#refs/heads/}"
   if [ "$BRANCH" == "master" ]; then
-    REPO="stable"
+    REPO="devel/stable"
   else
-    REPO="${BRANCH}"
+    REPO="devel/${BRANCH}"
   fi
 fi
 
