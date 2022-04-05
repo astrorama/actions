@@ -6,7 +6,7 @@ inputs:
     required: true
   srpm-dir:
     description: 'Location of the source RPMs'
-    required: true
+    required: false
 runs:
   using: composite
   steps:

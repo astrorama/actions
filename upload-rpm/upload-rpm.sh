@@ -59,7 +59,9 @@ copy_artifacts "/${REPO}/${OS_TYPE}/${OS_VERSION}/${OS_ARCH}/" $(ls -I "*debug*"
 copy_artifacts "/${REPO}/${OS_TYPE}/${OS_VERSION}/${OS_ARCH}/debug/" "$1"/*debug*.rpm
 
 # Source RPM
-copy_artifacts "/${REPO}/${OS_TYPE}/${OS_VERSION}/SRPMS/" "$2"/*.rpm
+if [ -n "$2" ]; then
+  copy_artifacts "/${REPO}/${OS_TYPE}/${OS_VERSION}/SRPMS/" "$2"/*.rpm
+fi
 
 rm "${SCRIPT_DIR}/key"
 
