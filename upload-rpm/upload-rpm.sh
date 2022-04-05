@@ -40,7 +40,7 @@ EOF
 if [ -n "${GITHUB_HEAD_REF}" ]; then
   PULL="${GITHUB_REF#refs/pull/}"
   PULL="${PULL%/merge}"
-  REPO="devel/pull/${PULL}"
+  REPO="devel/pull/${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}/${PULL}"
 elif [ -n "${GITHUB_REF_TYPE}" == "tag" ]; then
   REPO=""
 else
