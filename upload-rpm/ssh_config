@@ -4,5 +4,5 @@ Host *.astro.unige.ch
 
 Host repo01.astro.unige.ch
   Hostname repo01.astro.unige.ch
-  ProxyJump ${REPOSITORY_USER}@login01.astro.unige.ch
+  ProxyCommand ssh -F "${SCRIPT_DIR}/ssh_config" -oIdentityFile="${SCRIPT_DIR}/key" -qW %h:%p ecld_dev@login01.astro.unige.ch
 

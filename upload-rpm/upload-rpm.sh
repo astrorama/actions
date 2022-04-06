@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-SCRIPT_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
+export SCRIPT_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
 
 # System
 source /etc/os-release
@@ -21,7 +21,7 @@ copy_artifacts() {
   sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" -oIdentityFile="${SCRIPT_DIR}/key" \
     "${REPOSITORY_USER}@repo01.astro.unige.ch" \
     "mkdir -p /srv/repository/www/html/euclid/${1}"
-  sshpass -e scp -F "${SCRIPT_DIR}/ssh_config" "${@:2}" -oIdentityFile="${SCRIPT_DIR}/key" \
+  sshpass -e scp -F "${SCRIPT_DIR}/ssh_config" -i "${SCRIPT_DIR}/key" "${@:2}" \
     "${REPOSITORY_USER}@repo01.astro.unige.ch:/srv/repository/www/html/euclid/${1}"
   sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" -oIdentityFile="${SCRIPT_DIR}/key" \
     "${REPOSITORY_USER}@repo01.astro.unige.ch" \
