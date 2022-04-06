@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-export SCRIPT_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
+SCRIPT_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
 
 # System
 source /etc/os-release
@@ -18,12 +18,12 @@ fi
 
 # Helper to copy the artifacts and update the repo
 copy_artifacts() {
-  sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" \
+  sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" -oIdentityFile="${SCRIPT_DIR}/key" \
     "${REPOSITORY_USER}@repo01.astro.unige.ch" \
     "mkdir -p /srv/repository/www/html/euclid/${1}"
-  sshpass -e scp -F "${SCRIPT_DIR}/ssh_config" "${@:2}" -o UserKnownHostsFile="${SCRIPT_DIR}/UserKnownHostsFile" \
+  sshpass -e scp -F "${SCRIPT_DIR}/ssh_config" "${@:2}" -oIdentityFile="${SCRIPT_DIR}/key" \
     "${REPOSITORY_USER}@repo01.astro.unige.ch:/srv/repository/www/html/euclid/${1}"
-  sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" \
+  sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" -oIdentityFile="${SCRIPT_DIR}/key" \
     "${REPOSITORY_USER}@repo01.astro.unige.ch" \
     "cd '/srv/repository/www/html/euclid/${1}' && createrepo ${CREATEREPO_ARGS} --update . && repoview ."
 }
