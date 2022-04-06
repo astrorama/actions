@@ -1,5 +1,9 @@
 IdentityFile ${SCRIPT_DIR}/key
 
+Host *.astro.unige.ch
+  UserKnownHostsFile=/dev/null
+  StrictHostKeyChecking=no
+
 Host repo01.astro.unige.ch
-    Hostname repo01.astro.unige.ch
-    ProxyJump ${REPOSITORY_USER}@login01.astro.unige.ch
+  Hostname repo01.astro.unige.ch
+  ProxyJump ${REPOSITORY_USER}@login01.astro.unige.ch
