@@ -1,4 +1,3 @@
-UserKnownHostsFile ${SCRIPT_DIR}/known_hosts
 IdentityFile ${SCRIPT_DIR}/key
 
 Host repo01.astro.unige.ch
