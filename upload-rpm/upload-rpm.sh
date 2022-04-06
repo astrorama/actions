@@ -18,12 +18,12 @@ fi
 
 # Helper to copy the artifacts and update the repo
 copy_artifacts() {
-  sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" -o UserKnownHostsFile="${SCRIPT_DIR}/UserKnownHostsFile"  \
+  sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" -oUserKnownHostsFile="${SCRIPT_DIR}/known_hosts"  \
     "${REPOSITORY_USER}@repo01.astro.unige.ch" \
     "mkdir -p /srv/repository/www/html/euclid/${1}"
   sshpass -e scp -F "${SCRIPT_DIR}/ssh_config" "${@:2}" -o UserKnownHostsFile="${SCRIPT_DIR}/UserKnownHostsFile" \
     "${REPOSITORY_USER}@repo01.astro.unige.ch:/srv/repository/www/html/euclid/${1}"
-  sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" -o UserKnownHostsFile="${SCRIPT_DIR}/UserKnownHostsFile" \
+  sshpass -e ssh -F "${SCRIPT_DIR}/ssh_config" -oUserKnownHostsFile="${SCRIPT_DIR}/known_hosts" \
     "${REPOSITORY_USER}@repo01.astro.unige.ch" \
     "cd '/srv/repository/www/html/euclid/${1}' && createrepo ${CREATEREPO_ARGS} --update . && repoview ."
 }
