@@ -1,4 +1,7 @@
 #!/bin/bash
+
+export SSHPASS="${REPOSITORY_PASSWORD}"
+
 set -ex
 
 export SCRIPT_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
@@ -29,7 +32,6 @@ copy_artifacts() {
 }
 
 yum install -y sshpass openssh-clients
-export SSHPASS="${REPOSITORY_PASSWORD}"
 
 umask 077
 cat > "${SCRIPT_DIR}/key" <<EOF
