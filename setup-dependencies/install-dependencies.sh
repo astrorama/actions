@@ -24,7 +24,7 @@ rpm_doc_deps=$(echo ${cmake_deps} | awk '{for(i=1;i<NF;i+=2){print $i "-doc-" $(
 yum install -y ${rpm_dev_deps} ${rpm_doc_deps}
 
 # Common dependencies
-yum install -y cmake make gcc-c++ rpm-build
+yum install -y cmake make gcc-c++ rpm-build gettext
 
 # Install dependency list
 envsubst < "$1" | xargs yum install -y
