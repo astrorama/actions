@@ -25,6 +25,12 @@ if [[ ("$ID" == "fedora" && "$VERSION_ID" -ge 30) || ("$ID" == "centos" && "$VER
   CMAKEFLAGS="${CMAKEFLAGS} -DPYTHON_EXPLICIT_VERSION=3"
 fi
 
+# Use boost169 in centos7
+if [[ "$ID" == "centos" && "$VERSION_ID" -eq 7 ]]; then
+  export BOOST_INCLUDEDIR=/usr/include/boost169/
+  export BOOST_LIBRARYDIR=/usr/lib64/boost169/
+fi
+
 # Build
 SRCDIR="$(pwd)"
 mkdir -p "${BUILD_DIR}"
