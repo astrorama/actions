@@ -11,6 +11,11 @@ if [ "$ID" == "centos" ]; then
   if [ "$VERSION_ID" -ge 8 ]; then
     sed -i "s/enabled=0/enabled=1/" /etc/yum.repos.d/CentOS*-PowerTools.repo
   fi
+  # In centos7, yum passes urlgrabber user_agent, which is forbidden by mod_security
+  # in repository.astro.unige.ch
+  if [ "$VERSION_ID" -eq 7 ]; then
+    sed -i "s/'user_agent': .*/'user_agent': 'yum-centos7',/g" /usr/lib/python2.7/site-packages/yum/yumRepo.py
+  fi
 fi
 
 # Update image
