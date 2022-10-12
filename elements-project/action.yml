@@ -13,5 +13,5 @@ runs:
     - id: elements-project-version
       shell: bash
       run: |
-        echo "::set-output name=project::$(grep '^elements_project' CMakeLists.txt | sed 's/.*(//'| cut -d' ' -f1)"
-        echo "::set-output name=version::$(grep '^elements_project' CMakeLists.txt | sed 's/.*(//' | sed 's/[^ ]* //' | sed 's/ .*//')"
+        echo "{project}={$(grep '^elements_project' CMakeLists.txt | sed 's/.*(//'| cut -d' ' -f1)}" >> $GITHUB_OUTPUT
+        echo "{version}={$(grep '^elements_project' CMakeLists.txt | sed 's/.*(//' | sed 's/[^ ]* //' | sed 's/ .*//')}" >> $GITHUB_OUTPUT
