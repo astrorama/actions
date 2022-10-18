@@ -3,15 +3,16 @@ set -ex
 
 # Platform-specific configuration
 source /etc/os-release
+VERSION_ID="${VERSION_ID%%.}"
 
 # Figure out the python version to use
 export PYTHON="python3"
 export NUMPY="python3-numpy"
 export BOOST="boost"
-if [ "$ID" == "fedora" ] && [ "$VERSION_ID" -lt 30 ]; then
+if [[ "$ID" == "fedora"  && "$VERSION_ID" -lt 30 ]]; then
   PYTHON="python"
   NUMPY="python2-numpy"
-elif [ "$ID" == "centos" ] && [ "$VERSION_ID" -lt 8 ]; then
+elif [[ "$ID" == "centos"  && "$VERSION_ID" -lt 8 ]]; then
   PYTHON="python"
   NUMPY="python2-numpy"
   BOOST="boost169"

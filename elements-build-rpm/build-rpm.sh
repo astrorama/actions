@@ -11,6 +11,7 @@ export BRANCH="${GITHUB_REF#refs/heads/}"
 
 # Platform-specific configuration
 source /etc/os-release
+VERSION_ID="${VERSION_ID%%.}"
 
 # Common flags
 CMAKEFLAGS="-DINSTALL_DOC=ON -DUSE_SPHINX_APIDOC=OFF -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_TESTS=OFF -DRPM_NO_CHECK=OFF"
@@ -21,7 +22,7 @@ elif [[ "${BRANCH}" != "master" && "${GITHUB_REF_TYPE}" != "tag" ]]; then
   CMAKEFLAGS="${CMAKEFLAGS} -DCPACK_PACKAGE_RELEASE=dev"
 fi
 
-if [[ ("$ID" == "fedora" && "$VERSION_ID" -ge 30) || ("$ID" == "centos" && "$VERSION_ID" -ge 8) ]]; then
+if [[ ("$ID" == "fedora" && "$VERSION_ID" -ge 30) || ("$ID" == "centos" && "$VERSION_ID" -ge 8) || ("$ID" == "rocky") ]]; then
   CMAKEFLAGS="${CMAKEFLAGS} -DPYTHON_EXPLICIT_VERSION=3"
 fi
 
