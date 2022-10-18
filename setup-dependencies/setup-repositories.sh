@@ -3,19 +3,21 @@ set -ex
 
 # Platform-specific configuration
 source /etc/os-release
+VERSION_ID="${VERSION_ID%%.*}"
 
-# On CentOS, install EPEL
-if [ "$ID" == "centos" ]; then
+# Enable epel on centos and rocky
+if [[ "$ID" == "centos" || "$ID" == "rocky" ]]; then
   yum install -y epel-release
-  # Need powertools on CentOS8
-  if [ "$VERSION_ID" -ge 8 ]; then
-    sed -i "s/enabled=0/enabled=1/" /etc/yum.repos.d/CentOS*-PowerTools.repo
-  fi
-  # In centos7, yum passes urlgrabber user_agent, which is forbidden by mod_security
-  # in repository.astro.unige.ch
-  if [ "$VERSION_ID" -eq 7 ]; then
-    sed -i "s/'user_agent': .*/'user_agent': 'yum-centos7',/g" /usr/lib/python2.7/site-packages/yum/yumRepo.py
-  fi
+fi
+
+# In centos7, yum passes urlgrabber user_agent, which is forbidden by mod_security in repository.astro.unige.ch
+if [[ "$ID" == "centos" && "$VERSION_ID" -eq 7 ]]; then
+  sed -i "s/'user_agent': .*/'user_agent': 'yum-centos7',/g" /usr/lib/python2.7/site-packages/yum/yumRepo.py
+fi
+
+# On rockylinux, enable crb repository and
+if [[ "$ID" == "rocky" ]]; then
+  crb enable
 fi
 
 # Update image
