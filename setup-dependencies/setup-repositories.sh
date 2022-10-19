@@ -33,7 +33,7 @@ gpgcheck=0
 EOF
 
 # Develop repository if not building for master
-if [ "${GITHUB_REF#refs/heads/}" != "master" ]; then
+if [[ "${GITHUB_REF#refs/heads/}" != "master" && "${GITHUB_BASE_REF#refs/heads/}" != "master" ]]; then
   cat >>/etc/yum.repos.d/astrorama.repo <<EOF
 [AstroUnigeEuclidDevel]
 name=astro.unige.ch Euclid Devel
