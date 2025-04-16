@@ -18,7 +18,7 @@ elif [[ "$ID" == "centos"  && "$VERSION_ID" -lt 8 ]]; then
   BOOST="boost169"
 fi
 
-yum install -y awk
+yum install -y gawk
 
 # From the CMakeLists.txt, retrieve the list of dependencies
 cmake_deps=$(grep -oP '^elements_project\(\S+\s+\S+ USE \K(\S+ (\d\.?)+)*' CMakeLists.txt || true)
